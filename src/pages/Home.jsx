@@ -114,7 +114,7 @@ export default function Home() {
     <div>
       <section className="relative isolate overflow-hidden bg-ink-950 text-white">
         <video
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
+          className="absolute inset-0 h-full w-full object-cover opacity-80 saturate-125"
           autoPlay
           muted
           loop
@@ -124,8 +124,9 @@ export default function Home() {
         >
           <source src="/media/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-br from-ink-950 via-ink-950/85 to-ink-900/40" />
-        <div className="absolute inset-0 hero-mask opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-950/70 to-ink-950/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/5 to-ink-950/40" />
+        <div className="absolute inset-0 bg-ink-950/45 lg:hidden" />
 
         <div className="container-x relative pb-14 pt-14 sm:pb-20 sm:pt-20">
           <div className="grid gap-12 lg:grid-cols-[1.45fr_0.8fr] lg:items-center">
