@@ -2,7 +2,7 @@ import Logo from "./Logo";
 
 export default function AuthLayout({ image = "/images/journey.jpg", alt, eyebrow, title, subtitle, children, footer }) {
   return (
-    <div className="grid min-h-[calc(100vh-72px)] lg:grid-cols-[1fr_0.9fr]">
+    <div className="grid min-h-screen lg:grid-cols-[1fr_0.9fr]">
       <div className="flex items-center justify-center px-5 py-12 sm:px-8 sm:py-16">
         <div className="w-full max-w-md">
           <Logo />

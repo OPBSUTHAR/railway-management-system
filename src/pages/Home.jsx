@@ -55,7 +55,7 @@ function LiveBoard() {
   return (
     <div className="relative hidden lg:block">
       <div className="absolute -inset-4 rounded-[28px] bg-amber-400/10 blur-2xl" />
-      <div className="relative rounded-2xl border border-white/15 bg-white/[0.07] p-5 backdrop-blur-xl">
+      <div className="relative rounded-2xl border border-white/15 bg-ink-950/45 p-5 backdrop-blur-xl">
         <div className="flex items-center justify-between">
           <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">
             <span className="relative flex h-2 w-2">

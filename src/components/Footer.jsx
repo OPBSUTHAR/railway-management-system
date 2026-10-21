@@ -34,7 +34,7 @@ const COLUMNS = [
 
 export default function Footer() {
   return (
-    <footer className="mt-auto bg-ink-950 text-white">
+    <footer className="mt-auto border-t border-white/10 bg-ink-950/90 text-white backdrop-blur-xl">
       <div className="container-x grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Logo dark />

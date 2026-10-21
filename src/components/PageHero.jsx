@@ -1,6 +1,6 @@
 export default function PageHero({ eyebrow, title, description, actions, children }) {
   return (
-    <section className="relative overflow-hidden border-b border-ink-100 bg-white">
+    <section className="relative overflow-hidden border-b border-white/60 bg-white/55 backdrop-blur-xl">
       <div className="pointer-events-none absolute inset-0 grid-lines opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
       <div className="pointer-events-none absolute -right-20 -top-28 h-72 w-72 rounded-full bg-amber-200/30 blur-3xl" />
       <div className="container-x relative py-12 sm:py-16">

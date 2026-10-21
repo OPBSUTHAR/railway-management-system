@@ -68,7 +68,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-950/95 text-white backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-950/85 text-white backdrop-blur-2xl">
       <div className="container-x flex h-16 items-center justify-between gap-4">
         <Logo dark />
 
@@ -100,7 +100,7 @@ export default function Navbar() {
               {menuOpen ? (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-2 w-60 overflow-hidden rounded-2xl border border-ink-100 bg-white p-2 text-ink-900 shadow-float"
+                  className="absolute right-0 mt-2 w-60 overflow-hidden rounded-2xl border border-white/60 bg-white/85 p-2 text-ink-900 shadow-float backdrop-blur-2xl"
                 >
                   <div className="border-b border-ink-100 px-3 py-2.5">
                     <p className="text-[11px] font-semibold uppercase tracking-wider text-ink-400">Signed in as</p>
@@ -166,7 +166,7 @@ export default function Navbar() {
       </div>
 
       {mobileOpen ? (
-        <div className="border-t border-white/10 bg-ink-950 lg:hidden">
+        <div className="border-t border-white/10 bg-ink-950/95 backdrop-blur-2xl lg:hidden">
           <div className="container-x grid gap-1 py-4">
             {PRIMARY_LINKS.map((link) => (
               <NavLink

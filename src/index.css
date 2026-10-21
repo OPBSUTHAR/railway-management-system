@@ -67,31 +67,31 @@
   .btn-amber,
   .btn-outline,
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-300 ease-out active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-primary {
-    @apply bg-ink-900 text-white hover:-translate-y-0.5 hover:bg-ink-800 hover:shadow-lg;
+    @apply bg-ink-900 text-white hover:-translate-y-0.5 hover:scale-[1.015] hover:bg-ink-800 hover:shadow-lg;
   }
 
   .btn-amber {
-    @apply bg-amber-400 text-ink-950 hover:-translate-y-0.5 hover:bg-amber-300 hover:shadow-lg;
+    @apply bg-amber-400 text-ink-950 hover:-translate-y-0.5 hover:scale-[1.015] hover:bg-amber-300 hover:shadow-lg;
   }
 
   .btn-outline {
-    @apply border border-ink-200 bg-white text-ink-800 hover:border-ink-300 hover:bg-ink-50;
+    @apply border border-ink-200/80 bg-white/60 text-ink-800 backdrop-blur-sm hover:-translate-y-0.5 hover:border-ink-300 hover:bg-white/90;
   }
 
   .btn-ghost {
-    @apply text-ink-700 hover:bg-ink-100;
+    @apply text-ink-700 hover:bg-white/60 hover:text-ink-900;
   }
 
   .card {
-    @apply rounded-3xl border border-ink-100 bg-white shadow-card;
+    @apply rounded-3xl border border-white/70 bg-white/70 shadow-card backdrop-blur-xl transition-all duration-300;
   }
 
   .field {
-    @apply w-full rounded-xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 outline-none transition placeholder:text-ink-300 focus:border-ink-900 focus:ring-4 focus:ring-ink-900/5;
+    @apply w-full rounded-xl border border-ink-200/80 bg-white/70 px-4 py-3 text-sm text-ink-900 outline-none transition placeholder:text-ink-300 focus:border-ink-900 focus:bg-white/90 focus:ring-4 focus:ring-ink-900/5;
   }
 
   .field-label {
@@ -99,7 +99,7 @@
   }
 
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-ink-100 bg-white px-3 py-1 text-xs font-semibold text-ink-600;
+    @apply inline-flex items-center gap-1.5 rounded-full border border-ink-100/80 bg-white/70 px-3 py-1 text-xs font-semibold text-ink-600 backdrop-blur-sm;
   }
 
   .link-underline {
@@ -134,6 +134,271 @@
     background-image: linear-gradient(rgba(11, 18, 32, 0.055) 1px, transparent 1px),
       linear-gradient(90deg, rgba(11, 18, 32, 0.055) 1px, transparent 1px);
     background-size: 44px 44px;
+  }
+
+  /* Site-wide translucency: lets the animated background glow through surfaces */
+  .site-glass .bg-white {
+    background-color: rgb(255 255 255 / 0.72);
+  }
+
+  .site-glass .bg-paper {
+    background-color: rgb(247 245 240 / 0.65);
+  }
+}
+
+/* ── Ambient animated background ─────────────────────────────────────────── */
+.ambient-bg {
+  background: #f7f5f0;
+}
+
+.ambient-wash {
+  background:
+    radial-gradient(58rem 58rem at 4% -12%, rgba(251, 191, 36, 0.24), transparent 62%),
+    radial-gradient(54rem 54rem at 102% 4%, rgba(56, 189, 248, 0.18), transparent 62%),
+    radial-gradient(52rem 52rem at 50% 112%, rgba(52, 211, 153, 0.15), transparent 62%),
+    linear-gradient(180deg, #fbfaf6 0%, #f4f1e9 55%, #f7f5f0 100%);
+}
+
+.ambient-grid {
+  background-image:
+    linear-gradient(rgba(11, 18, 32, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11, 18, 32, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 30%, #000 15%, transparent 78%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 30%, #000 15%, transparent 78%);
+}
+
+.ambient-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.6;
+  will-change: transform;
+}
+
+.ambient-blob-a {
+  top: -14vw;
+  left: -12vw;
+  width: 46vw;
+  height: 46vw;
+  min-width: 340px;
+  min-height: 340px;
+  background: radial-gradient(circle at 40% 40%, rgba(251, 191, 36, 0.55), rgba(251, 191, 36, 0) 68%);
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+
+.ambient-blob-b {
+  top: 24%;
+  right: -16vw;
+  width: 48vw;
+  height: 48vw;
+  min-width: 360px;
+  min-height: 360px;
+  background: radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.42), rgba(56, 189, 248, 0) 70%);
+  animation: drift-b 32s ease-in-out infinite alternate;
+}
+
+.ambient-blob-c {
+  bottom: -20vw;
+  left: 22%;
+  width: 44vw;
+  height: 44vw;
+  min-width: 320px;
+  min-height: 320px;
+  background: radial-gradient(circle at 50% 50%, rgba(244, 114, 182, 0.3), rgba(244, 114, 182, 0) 70%);
+  animation: drift-c 38s ease-in-out infinite alternate;
+}
+
+.ambient-ring {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid rgba(11, 18, 32, 0.08);
+}
+
+.ambient-ring-a {
+  top: 8%;
+  right: 12%;
+  width: 30rem;
+  height: 30rem;
+  border-style: dashed;
+  animation: spin-slow 90s linear infinite;
+}
+
+.ambient-ring-b {
+  bottom: 6%;
+  left: -8rem;
+  width: 24rem;
+  height: 24rem;
+  animation: spin-slow 70s linear infinite reverse;
+}
+
+.ambient-track {
+  position: absolute;
+  top: -20%;
+  right: 14%;
+  width: 1px;
+  height: 140%;
+  background: linear-gradient(180deg, transparent, rgba(11, 18, 32, 0.12) 30%, rgba(11, 18, 32, 0.12) 70%, transparent);
+  transform: rotate(12deg);
+}
+
+.ambient-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.65);
+  box-shadow: 0 0 12px 3px rgba(245, 158, 11, 0.25);
+  animation: spark-float 18s linear infinite;
+}
+
+.ambient-spark-a {
+  left: 12%;
+  top: 62%;
+  animation-delay: 0s;
+}
+
+.ambient-spark-b {
+  left: 68%;
+  top: 48%;
+  animation-delay: -6s;
+  animation-duration: 22s;
+}
+
+.ambient-spark-c {
+  left: 84%;
+  top: 72%;
+  animation-delay: -11s;
+  animation-duration: 16s;
+}
+
+.ambient-spark-d {
+  left: 38%;
+  top: 80%;
+  animation-delay: -15s;
+  animation-duration: 24s;
+}
+
+@keyframes drift-a {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6vw, 5vh, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(2vw, 12vh, 0) scale(0.96);
+  }
+}
+
+@keyframes drift-b {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-7vw, 8vh, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(-3vw, -6vh, 0) scale(0.94);
+  }
+}
+
+@keyframes drift-c {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(8vw, -6vh, 0) scale(1.14);
+  }
+  100% {
+    transform: translate3d(-4vw, -2vh, 0) scale(0.98);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spark-float {
+  0% {
+    transform: translate3d(0, 20vh, 0) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(3vw, -70vh, 0) scale(1.1);
+    opacity: 0;
+  }
+}
+
+/* ── Route transitions ───────────────────────────────────────────────────── */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.995);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes page-out {
+  from {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.997);
+    filter: blur(4px);
+  }
+}
+
+.page-enter {
+  animation: page-in 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-exit {
+  animation: page-out 0.19s ease-in both;
+  pointer-events: none;
+}
+
+/* ── Site-wide hover polish ──────────────────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  .site-glass .card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(255 255 255 / 0.95);
+    box-shadow: 0 30px 70px -34px rgba(7, 12, 21, 0.45);
+  }
+
+  .site-glass button:not(:disabled),
+  .site-glass a {
+    transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+    transition-duration: 220ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-blob,
+  .ambient-ring,
+  .ambient-spark {
+    animation: none !important;
+  }
+
+  .page-enter {
+    animation-duration: 0.01ms !important;
   }
 }
 
@@ -187,6 +452,18 @@
 @media print {
   .no-print {
     display: none !important;
+  }
+  .ambient-bg {
+    display: none !important;
+  }
+  .page-enter,
+  .page-exit {
+    animation: none !important;
+  }
+  .card {
+    background: #fff !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
   }
   body {
     background: #fff;
