@@ -665,12 +665,10 @@
   from {
     opacity: 0;
     transform: translateY(16px) scale(0.995);
-    filter: blur(5px);
   }
   to {
     opacity: 1;
     transform: none;
-    filter: none;
   }
 }
 
@@ -678,12 +676,10 @@
   from {
     opacity: 1;
     transform: none;
-    filter: none;
   }
   to {
     opacity: 0;
     transform: translateY(-10px) scale(0.997);
-    filter: blur(4px);
   }
 }
 

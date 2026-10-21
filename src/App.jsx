@@ -27,6 +27,12 @@ function Shell() {
   const bare = shown.pathname === "/login" || shown.pathname === "/signup";
 
   useEffect(() => {
+    if (phase !== "in") return undefined;
+    const timer = window.setTimeout(() => setPhase("idle"), 520);
+    return () => window.clearTimeout(timer);
+  }, [phase, shown]);
+
+  useEffect(() => {
     if (location.pathname === shown.pathname) {
       if (location.search !== shown.search || location.hash !== shown.hash) setShown(location);
       return undefined;
@@ -42,13 +48,15 @@ function Shell() {
     return () => window.clearTimeout(timer);
   }, [location, shown]);
 
+  const pageClass = phase === "out" ? "page-exit" : phase === "in" ? "page-enter" : "";
+
   return (
     <>
       <AmbientBackground />
       <div className="site-glass relative z-10 flex min-h-screen flex-col">
         {bare ? null : <Navbar />}
         <main className={bare ? "flex-1" : "min-h-[60vh] flex-1"}>
-          <div key={shown.pathname} className={phase === "out" ? "page-exit" : "page-enter"}>
+          <div key={shown.pathname} className={pageClass}>
             <Routes location={shown}>
               <Route path="/" element={<Home />} />
               <Route path="/booking" element={<Booking />} />
