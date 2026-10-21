@@ -4,8 +4,8 @@
 
 This project was migrated from a static HTML/CSS/JS college project (`railway-system.7z`) into a modern, fully responsive React application. The original Express + MongoDB backend and static pages are preserved under [`legacy/`](legacy) for reference.
 
-> **Live demo:** <!-- LIVE_URL -->
-> **Repository:** https://github.com/OPBSUTHAR/railway-management-system
+> **Live demo:** [railway-management-system-nine.vercel.app](https://railway-management-system-nine.vercel.app)  
+> **Repository:** [github.com/OPBSUTHAR/railway-management-system](https://github.com/OPBSUTHAR/railway-management-system)
 
 ---
 
@@ -93,7 +93,7 @@ vercel --prod
 ## Project structure
 
 ```
-railway-platform/
+railway-management-system/
 ├─ public/
 │  ├─ images/          # hero, page imagery, logo and favicon
 │  └─ media/           # compressed hero video

@@ -295,7 +295,7 @@ export default function Home() {
 
       <section className="container-x py-16 sm:py-20">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-3xl border border-ink-100 bg-white p-6 sm:p-8">
+          <div className="min-w-0 rounded-3xl border border-ink-100 bg-white p-6 sm:p-8">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <p className="eyebrow text-amber-700">
@@ -339,7 +339,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex min-w-0 flex-col gap-4">
             <div className="rounded-3xl bg-ink-950 p-6 text-white sm:p-8">
               <Zap className="h-6 w-6 text-amber-400" />
               <p className="mt-4 font-display text-xl font-bold leading-snug">
