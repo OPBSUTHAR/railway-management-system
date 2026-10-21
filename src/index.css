@@ -2,14 +2,14 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Barlow Condensed", "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --color-ink-50: #f4f6fa;
   --color-ink-100: #e5e9f2;
   --color-ink-200: #c7cfdd;
   --color-ink-300: #9aa7bd;
-  --color-ink-400: #6d7c96;
-  --color-ink-500: #4b5a74;
+  --color-ink-400: #64748b;
+  --color-ink-500: #3f4d63;
   --color-ink-600: #34425a;
   --color-ink-700: #222f45;
   --color-ink-800: #142036;
@@ -777,6 +777,259 @@
 
 .animate-fade-up {
   animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Railway station theme ──────────────────────────────────────────────── */
+body {
+  background: #e7edf2;
+}
+
+.ambient-bg {
+  background: #e7edf2;
+}
+
+.ambient-wash {
+  background:
+    radial-gradient(58rem 42rem at 88% -10%, rgba(245, 184, 0, 0.2), transparent 64%),
+    radial-gradient(52rem 42rem at -8% 26%, rgba(23, 58, 86, 0.16), transparent 68%),
+    linear-gradient(155deg, #eef3f7 0%, #e8eef3 55%, #f4f0e6 100%);
+}
+
+.ambient-grid {
+  background-image:
+    linear-gradient(rgba(8, 28, 45, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 28, 45, 0.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.ambient-blob {
+  opacity: 0.34;
+  filter: blur(72px);
+}
+
+.ambient-blob-a {
+  background: radial-gradient(circle at 40% 40%, rgba(245, 184, 0, 0.55), rgba(245, 184, 0, 0) 68%);
+}
+
+.ambient-blob-b {
+  background: radial-gradient(circle at 50% 50%, rgba(27, 78, 112, 0.4), rgba(27, 78, 112, 0) 70%);
+}
+
+.ambient-blob-c {
+  background: radial-gradient(circle at 50% 50%, rgba(180, 83, 9, 0.24), rgba(180, 83, 9, 0) 70%);
+}
+
+.ambient-bubble {
+  opacity: 0.32;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* Wide, solid "station panels" replace the floating glass bubbles */
+.bubble-surface,
+.site-glass main section.bubble-section {
+  border: 1px solid #c9d5df;
+  border-radius: 0.9rem;
+  background-color: #fbf9f3;
+  background-image: none;
+  box-shadow:
+    inset 0 3px 0 #f2b500,
+    0 22px 48px -42px rgba(7, 21, 33, 0.55),
+    inset 0 1px 0 #ffffff;
+  backdrop-filter: none;
+}
+
+.site-glass main section.bubble-section {
+  width: calc(100% - 2rem);
+  max-width: 84rem;
+  margin: 1rem auto;
+}
+
+.site-glass main section.bubble-section:nth-of-type(even) {
+  background-color: #f7f3e9;
+}
+
+/* Crisp ticket cards instead of translucent bubbles */
+.site-glass :is(.rounded-xl, .rounded-2xl, .rounded-3xl).bg-white:not(.field) {
+  border: 1px solid #d6dfe7;
+  border-radius: 0.7rem;
+  background-color: #fffdf8;
+  background-image: none;
+  box-shadow:
+    0 1px 0 #ffffff inset,
+    0 16px 32px -30px rgba(7, 21, 33, 0.5);
+  backdrop-filter: none;
+}
+
+.site-glass :is(.rounded-xl, .rounded-2xl, .rounded-3xl):is(.bg-ink-950, .bg-ink-900) {
+  border: 1px solid #1a3044;
+  border-radius: 0.8rem;
+  background-color: #071521;
+  background-image: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 22px 45px -34px rgba(7, 21, 33, 0.8);
+  backdrop-filter: none;
+}
+
+.site-glass [class~="bg-paper/70"],
+.site-glass [class~="bg-paper/60"] {
+  background-color: #f2ede2;
+}
+
+.site-glass [class~="bg-ink-50"],
+.site-glass [class~="bg-ink-50/70"] {
+  background-color: #eef2f6;
+}
+
+.site-glass [class~="bg-amber-50"] {
+  background-color: #fff6da;
+}
+
+.site-glass [class~="bg-rose-50"] {
+  background-color: #fff1f2;
+}
+
+.site-glass [class~="bg-emerald-50"] {
+  background-color: #ecfdf5;
+}
+
+.site-glass [class~="bg-sky-50"] {
+  background-color: #eff8ff;
+}
+
+/* Form controls: high-contrast station-counter fields */
+.field {
+  border: 1px solid #c3cfda;
+  border-radius: 0.5rem;
+  background-color: #fffefb;
+  background-image: none;
+  box-shadow: none;
+  color: #071521;
+  backdrop-filter: none;
+}
+
+.field:focus {
+  border-color: #d99f00;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(245, 184, 0, 0.18);
+}
+
+.field-label {
+  color: #3d4c61;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.chip {
+  border-radius: 0.25rem;
+  backdrop-filter: none;
+}
+
+.search-bubble {
+  border: 1px solid #b9c6d2;
+  border-radius: 0.7rem;
+  background-color: #fffdf8;
+  background-image: none;
+  box-shadow: 0 30px 60px -42px rgba(7, 21, 33, 0.75);
+  backdrop-filter: none;
+}
+
+.search-bubble .field-label {
+  color: #3d4c61;
+}
+
+.search-bubble select,
+.search-bubble input {
+  color: #071521;
+}
+
+.search-bubble select option {
+  color: #071521;
+  background: #fffdf8;
+}
+
+/* Buttons read as station signage, not pills */
+.btn,
+.btn-primary,
+.btn-amber,
+.btn-outline,
+.btn-ghost {
+  border-radius: 0.35rem;
+  letter-spacing: 0.01em;
+  backdrop-filter: none;
+}
+
+.btn-primary {
+  border-color: #183249;
+  background-color: #0b1f31;
+  background-image: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 22px -18px rgba(7, 21, 33, 0.9);
+}
+
+.btn-primary:hover {
+  background-color: #143149;
+  background-image: none;
+}
+
+.btn-amber {
+  border-color: #d69f00;
+  background-color: #f5b800;
+  background-image: none;
+  box-shadow: inset 0 1px 0 #ffe08a, 0 10px 22px -16px rgba(180, 83, 9, 0.8);
+}
+
+.btn-amber:hover {
+  background-color: #ffc21a;
+  background-image: none;
+}
+
+.btn-outline {
+  border-color: #bfccd7;
+  background-color: #fffdf8;
+  background-image: none;
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  border-color: #e0a800;
+  background-color: #fff9e6;
+  background-image: none;
+}
+
+/* Navigation and footer: deep railway navy with signal-amber rules */
+.navbar-glass {
+  border-bottom: 2px solid #f2b500;
+  background-color: #071521;
+  background-image: none;
+  box-shadow: 0 12px 28px -22px rgba(7, 21, 33, 0.85);
+  backdrop-filter: none;
+}
+
+.navbar-glass nav a {
+  border-radius: 0.25rem;
+}
+
+.footer-glass {
+  border-top: 3px solid #f2b500;
+  background-color: #071521;
+  background-image: none;
+  backdrop-filter: none;
+}
+
+/* Left-aligned, editorial section headings */
+.site-glass main section.bubble-section h2,
+.bubble-surface h1 {
+  letter-spacing: 0.005em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-glass .card:hover,
+  .site-glass :is(div, article, a):is(.rounded-xl, .rounded-2xl, .rounded-3xl).bg-white[class*="border"]:not(.field):hover {
+    border-color: #e0a800;
+    box-shadow:
+      inset 0 1px 0 #ffffff,
+      0 20px 38px -30px rgba(7, 21, 33, 0.5);
+  }
 }
 
 @media print {

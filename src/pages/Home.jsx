@@ -9,7 +9,6 @@ import {
   MapPin,
   Search,
   ShieldCheck,
-  Sparkles,
   TrainFront,
   Wallet,
   Zap,
@@ -54,45 +53,50 @@ function LiveBoard() {
   const rows = [TRAINS[0], TRAINS[2], TRAINS[18]];
   return (
     <div className="relative hidden lg:block">
-      <div className="absolute -inset-4 rounded-[28px] bg-amber-400/10 blur-2xl" />
-      <div className="relative rounded-2xl border border-white/15 bg-ink-950/45 p-5 backdrop-blur-xl">
-        <div className="flex items-center justify-between">
-          <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-            </span>
-            Live network
-          </p>
-          <span className="text-[10px] uppercase tracking-widest text-ink-400">Demo feed</span>
+      <div className="absolute -inset-4 rounded-xl bg-amber-400/10 blur-2xl" />
+      <div className="relative overflow-hidden rounded-lg border border-white/15 bg-[#050d18] shadow-[0_30px_70px_-30px_rgba(0,0,0,0.9)]">
+        <div className="flex items-center justify-between bg-amber-400 px-4 py-2.5 text-ink-950">
+          <p className="font-mono text-[11px] font-bold uppercase tracking-[0.2em]">Departures</p>
+          <span className="flex items-center gap-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em]">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-700" /> Demo feed
+          </span>
         </div>
-        <div className="mt-5 space-y-4">
-          {rows.map((train) => {
-            const origin = getStation(train.route[0].code);
-            const destination = getStation(train.route.at(-1).code);
-            return (
-              <div key={train.number} className="flex items-center justify-between gap-3 border-b border-white/10 pb-3 last:border-0 last:pb-0">
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold text-white">{train.name}</p>
-                  <p className="mt-0.5 text-[11px] text-ink-300">
-                    {origin.code} → {destination.code} · dep {train.route[0].dep}
-                  </p>
+        <div className="p-4 sm:p-5">
+          <div className="grid grid-cols-[3.4rem_minmax(0,1fr)_auto] gap-3 border-b border-white/15 pb-2 font-mono text-[9px] uppercase tracking-[0.16em] text-ink-300">
+            <span>Train</span>
+            <span>Service</span>
+            <span>Status</span>
+          </div>
+          <div className="divide-y divide-white/10">
+            {rows.map((train) => {
+              const origin = getStation(train.route[0].code);
+              const destination = getStation(train.route.at(-1).code);
+              return (
+                <div key={train.number} className="grid grid-cols-[3.4rem_minmax(0,1fr)_auto] items-center gap-3 py-3">
+                  <span className="font-mono text-[11px] font-bold tracking-tight text-amber-300">{train.number}</span>
+                  <div className="min-w-0">
+                    <p className="line-clamp-2 text-[13px] font-semibold leading-snug text-white">{train.name}</p>
+                    <p className="mt-0.5 font-mono text-[10px] uppercase tracking-wider text-ink-300">
+                      {origin.code} → {destination.code} · dep {train.route[0].dep}
+                    </p>
+                  </div>
+                  <StatusBadge status={train.status} />
                 </div>
-                <StatusBadge status={train.status} />
-              </div>
-            );
-          })}
-        </div>
-        <div className="mt-5 rounded-xl bg-ink-950/60 p-3">
-          <p className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Network pulse</p>
-          <div className="mt-2 flex items-end justify-between">
-            <p className="font-display text-2xl font-extrabold text-white">
-              {TRAINS.length} <span className="text-[10px] font-semibold uppercase tracking-wide text-ink-400">live services</span>
-            </p>
-            <div className="flex h-8 items-end gap-1">
-              {[40, 62, 48, 74, 58, 88, 70, 96].map((height, index) => (
-                <span key={index} className="w-1.5 rounded-sm bg-amber-400/80" style={{ height: `${height}%` }} />
-              ))}
+              );
+            })}
+          </div>
+          <div className="mt-3 grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-3 text-center">
+            <div>
+              <p className="font-display text-xl font-bold text-amber-300">{TRAINS.length}</p>
+              <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-300">Services</p>
+            </div>
+            <div>
+              <p className="font-display text-xl font-bold text-white">{STATION_LIST.length}</p>
+              <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-300">Stations</p>
+            </div>
+            <div>
+              <p className="font-display text-xl font-bold text-white">06</p>
+              <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-ink-300">Classes</p>
             </div>
           </div>
         </div>
@@ -132,7 +136,7 @@ export default function Home() {
           <div className="grid gap-12 lg:grid-cols-[1.45fr_0.8fr] lg:items-center">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-200 backdrop-blur">
-                <Sparkles className="h-3.5 w-3.5" />
+                <TrainFront className="h-3.5 w-3.5" />
                 Namaste, welcome aboard
               </div>
               <h1 className="mt-5 text-balance font-display text-[40px] font-extrabold leading-[1.03] tracking-tight sm:text-6xl">
@@ -152,15 +156,15 @@ export default function Home() {
               </div>
               <dl className="mt-10 grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-6">
                 <div>
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Stations</dt>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-200">Stations</dt>
                   <dd className="mt-1 font-display text-2xl font-extrabold">{STATION_LIST.length}+</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Services</dt>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-200">Services</dt>
                   <dd className="mt-1 font-display text-2xl font-extrabold">{TRAINS.length}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-ink-400">Classes</dt>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ink-200">Classes</dt>
                   <dd className="mt-1 font-display text-2xl font-extrabold text-amber-300">6</dd>
                 </div>
               </dl>
@@ -170,7 +174,7 @@ export default function Home() {
 
           <div id="search" className="mt-12 scroll-mt-24 sm:mt-16">
             <SearchBar onSubmit={handleSearch} className="shadow-[0_30px_80px_-30px_rgba(0,0,0,0.65)]" />
-            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-ink-300">
+            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-white/70">
               {TRUST.map(({ icon: Icon, label }) => (
                 <span key={label} className="inline-flex items-center gap-1.5">
                   <Icon className="h-3.5 w-3.5 text-amber-400" /> {label}
@@ -204,29 +208,41 @@ export default function Home() {
               <Link
                 key={route.label}
                 to={`/booking?from=${route.from}&to=${route.to}&date=${todayISO()}`}
-                className="group relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-5 transition hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-xl"
+                className="group relative overflow-hidden rounded-xl border border-ink-100 border-l-4 border-l-amber-400 bg-white p-5 transition hover:-translate-y-0.5 hover:border-amber-300 hover:shadow-xl"
               >
-                <div className="flex items-start justify-between">
-                  <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-600">{route.hint}</p>
-                    <h3 className="mt-2 font-display text-xl font-bold text-ink-900">{route.label}</h3>
-                    <p className="mt-1 text-xs text-ink-500">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-700">{route.hint}</p>
+                    <h3 className="mt-1.5 font-display text-2xl font-bold leading-none text-ink-900">{route.label}</h3>
+                    <p className="mt-2 text-xs text-ink-500">
                       {from.city} → {to.city} · {from.state}
                     </p>
                   </div>
-                  <span className="grid h-10 w-10 place-items-center rounded-full border border-ink-100 text-ink-400 transition group-hover:border-amber-300 group-hover:bg-amber-400 group-hover:text-ink-950">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </span>
+                  <div className="shrink-0 text-right">
+                    <p className="font-mono text-sm font-bold tracking-wider text-ink-950">
+                      {route.from} <span className="text-amber-600">→</span> {route.to}
+                    </p>
+                    <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-400">Station code</p>
+                  </div>
                 </div>
-                <div className="mt-6 flex items-end justify-between border-t border-dashed border-ink-100 pt-4">
+                <div className="mt-5 flex items-center gap-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-ink-950" />
+                  <span className="h-px flex-1 bg-ink-200" />
+                  <span className="font-mono text-[9px] font-bold uppercase tracking-[0.15em] text-ink-400">
+                    {best ? `${best.train.number}` : "Connection"}
+                  </span>
+                  <span className="h-px flex-1 bg-ink-200" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                </div>
+                <div className="mt-4 flex items-end justify-between border-t border-dashed border-ink-200 pt-4">
                   <div className="flex items-center gap-4 text-xs text-ink-500">
                     {best ? (
                       <>
                         <span className="inline-flex items-center gap-1">
-                          <Clock3 className="h-3.5 w-3.5 text-ink-400" /> {formatDuration(best.duration)}
+                          <Clock3 className="h-3.5 w-3.5 text-ink-500" /> {formatDuration(best.duration)}
                         </span>
                         <span className="inline-flex items-center gap-1">
-                          <MapPin className="h-3.5 w-3.5 text-ink-400" /> {best.distance} km
+                          <MapPin className="h-3.5 w-3.5 text-ink-500" /> {best.distance} km
                         </span>
                       </>
                     ) : (
@@ -234,8 +250,8 @@ export default function Home() {
                     )}
                   </div>
                   <p className="text-right">
-                    <span className="block text-[10px] uppercase tracking-wide text-ink-400">from</span>
-                    <span className="font-display text-lg font-extrabold text-ink-900">
+                    <span className="block text-[10px] uppercase tracking-wide text-ink-500">from</span>
+                    <span className="font-display text-xl font-bold text-ink-900">
                       {best ? formatINR(lowestFare(best.train)) : "—"}
                     </span>
                   </p>

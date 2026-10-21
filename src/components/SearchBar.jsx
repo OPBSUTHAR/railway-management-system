@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeftRight, CalendarDays, MapPin, Search } from "lucide-react";
+import { ArrowLeftRight, CalendarDays, ChevronDown, MapPin, Search } from "lucide-react";
 import { STATION_LIST, CLASS_META } from "../data/railway";
 import { todayISO } from "../lib/dates";
 
@@ -31,22 +31,25 @@ export default function SearchBar({ initial, onSubmit, className = "" }) {
 
   return (
     <form onSubmit={submit} className={`search-bubble rounded-2xl p-3 shadow-2xl sm:p-4 ${className}`}>
-      <div className="grid gap-2 md:grid-cols-[1fr_1fr_auto_1.1fr_auto] md:items-end">
-        <label className="relative block px-3 py-2">
+      <div className="grid gap-2 md:grid-cols-[minmax(0,1.35fr)_auto_minmax(0,1.35fr)_minmax(0,1fr)_auto] md:items-end md:gap-0">
+        <label className="relative block min-w-0 px-3 py-2">
           <span className="field-label flex items-center gap-1">
             <MapPin className="h-3 w-3 text-amber-500" /> From
           </span>
-          <select
-            value={from}
-            onChange={(event) => setFrom(event.target.value)}
-            className="mt-1 w-full cursor-pointer appearance-none bg-transparent pr-2 font-display text-sm font-bold text-ink-900 outline-none"
-          >
-            {STATION_LIST.map((station) => (
-              <option key={station.code} value={station.code}>
-                {station.name} ({station.code})
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              value={from}
+              onChange={(event) => setFrom(event.target.value)}
+              className="mt-1 w-full min-w-0 cursor-pointer appearance-none bg-transparent pr-7 font-display text-[15px] font-semibold tracking-wide text-ink-950 outline-none"
+            >
+              {STATION_LIST.map((station) => (
+                <option key={station.code} value={station.code}>
+                  {station.name} ({station.code})
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-1 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-400" />
+          </div>
         </label>
 
         <div className="relative hidden items-center justify-center md:flex">
@@ -60,24 +63,27 @@ export default function SearchBar({ initial, onSubmit, className = "" }) {
           </button>
         </div>
 
-        <label className="relative block border-t border-ink-100 px-3 py-2 md:border-l md:border-t-0">
+        <label className="relative block min-w-0 border-t border-ink-100 px-3 py-2 md:border-l md:border-t-0">
           <span className="field-label flex items-center gap-1">
             <MapPin className="h-3 w-3 text-amber-500" /> To
           </span>
-          <select
-            value={to}
-            onChange={(event) => setTo(event.target.value)}
-            className="mt-1 w-full cursor-pointer appearance-none bg-transparent pr-2 font-display text-sm font-bold text-ink-900 outline-none"
-          >
-            {STATION_LIST.map((station) => (
-              <option key={station.code} value={station.code}>
-                {station.name} ({station.code})
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              value={to}
+              onChange={(event) => setTo(event.target.value)}
+              className="mt-1 w-full min-w-0 cursor-pointer appearance-none bg-transparent pr-7 font-display text-[15px] font-semibold tracking-wide text-ink-950 outline-none"
+            >
+              {STATION_LIST.map((station) => (
+                <option key={station.code} value={station.code}>
+                  {station.name} ({station.code})
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-1 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-400" />
+          </div>
         </label>
 
-        <label className="relative block border-t border-ink-100 px-3 py-2 md:border-l md:border-t-0">
+        <label className="relative block min-w-0 border-t border-ink-100 px-3 py-2 md:border-l md:border-t-0">
           <span className="field-label flex items-center gap-1">
             <CalendarDays className="h-3 w-3 text-amber-500" /> Date
           </span>
@@ -86,17 +92,17 @@ export default function SearchBar({ initial, onSubmit, className = "" }) {
             min={todayISO()}
             value={date}
             onChange={(event) => setDate(event.target.value)}
-            className="mt-1 w-full bg-transparent font-display text-sm font-bold text-ink-900 outline-none"
+            className="mt-1 w-full min-w-0 bg-transparent font-display text-[15px] font-semibold tracking-wide text-ink-950 outline-none"
           />
         </label>
 
-        <div className="flex gap-2 border-t border-ink-100 px-1 pt-2 md:border-none md:pt-0">
-          <label className="block flex-1 px-2 py-2">
+        <div className="flex min-w-0 gap-2 border-t border-ink-100 px-1 pt-2 md:border-none md:pt-0">
+          <label className="block min-w-0 flex-1 px-2 py-2">
             <span className="field-label">Class</span>
             <select
               value={classCode}
               onChange={(event) => setClassCode(event.target.value)}
-              className="mt-1 w-full cursor-pointer bg-transparent text-sm font-bold text-ink-900 outline-none"
+              className="mt-1 w-full min-w-0 cursor-pointer bg-transparent text-sm font-semibold text-ink-950 outline-none"
             >
               <option value="ANY">Any class</option>
               {Object.entries(CLASS_META).map(([code, meta]) => (
@@ -108,7 +114,7 @@ export default function SearchBar({ initial, onSubmit, className = "" }) {
           </label>
           <button type="submit" className="btn btn-amber shrink-0 self-center px-4 py-3 sm:px-5">
             <Search className="h-4 w-4" />
-            <span className="hidden sm:inline">Search</span>
+            <span>Search</span>
           </button>
         </div>
       </div>

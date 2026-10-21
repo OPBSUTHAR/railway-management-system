@@ -88,7 +88,7 @@ export default function MyBookings() {
                 key={item.id}
                 type="button"
                 onClick={() => setTab(item.id)}
-                className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${
+                className={`rounded-md border px-4 py-2 text-xs font-semibold transition ${
                   tab === item.id
                     ? "border-ink-950 bg-ink-950 text-white"
                     : "border-ink-200 bg-white text-ink-600 hover:border-ink-300"

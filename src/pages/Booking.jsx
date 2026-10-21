@@ -58,22 +58,22 @@ function TrainResult({ result, date, classFilter, onSelect }) {
 
   return (
     <article className={`card overflow-hidden transition ${operating ? "" : "opacity-80"}`}>
-      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-ink-100 p-5 sm:p-6">
-        <div className="flex items-start gap-3">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink-950 font-display text-[13px] font-extrabold text-amber-300">
-            {train.number.slice(-2)}
+      <div className="flex items-start justify-between gap-3 border-b border-ink-100 p-5 sm:p-6">
+        <div className="flex min-w-0 items-start gap-3">
+          <span className="grid h-11 w-14 shrink-0 place-items-center rounded-md bg-ink-950 font-mono text-[11px] font-bold tracking-tight text-amber-300">
+            {train.number}
           </span>
-          <div>
+          <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-display text-lg font-bold text-ink-900">{train.name}</h3>
+              <h3 className="font-display text-base font-bold leading-tight text-ink-900 sm:text-lg">{train.name}</h3>
               <span className="chip border-amber-200 bg-amber-50 text-amber-700">{train.tag}</span>
             </div>
             <p className="mt-1 text-xs text-ink-500">
-              #{train.number} · Runs {runsOn(train.days, date) ? "today" : "on selected days"} · {formatDate(date, { weekday: undefined, year: undefined })}
+              Runs {runsOn(train.days, date) ? "today" : "on selected days"} · {formatDate(date, { weekday: undefined, year: undefined })}
             </p>
           </div>
         </div>
-        <StatusBadge status={train.status} />
+        <StatusBadge status={train.status} className="shrink-0" />
       </div>
 
       <div className="grid gap-5 p-5 sm:p-6 lg:grid-cols-[1fr_1.1fr]">
@@ -147,10 +147,10 @@ function TrainResult({ result, date, classFilter, onSelect }) {
                         {status.status === "WL" ? `Waitlist ${status.seats}` : `${status.seats} seats`}
                       </p>
                     </div>
-                    <div className="text-right">
+                    <div className="shrink-0 text-right">
                       <p className="font-display text-sm font-extrabold text-ink-900">{formatINR(fare)}</p>
-                      <p className="text-[10px] font-semibold uppercase tracking-wide text-ink-400 opacity-0 transition group-hover:opacity-100">
-                        Select
+                      <p className="mt-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-amber-700 transition group-hover:text-amber-800">
+                        Select <ArrowRight className="h-3 w-3" />
                       </p>
                     </div>
                   </button>

@@ -27,7 +27,7 @@ export default function StatusBadge({ status, tone, dot = true, className = "" }
   const resolved = TONES[tone || STATUS_TONE[status] || "ink"];
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${resolved} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-sm border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide ${resolved} ${className}`}
     >
       {dot ? <span className="h-1.5 w-1.5 rounded-full bg-current" /> : null}
       {status}

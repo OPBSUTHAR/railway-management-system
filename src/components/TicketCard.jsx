@@ -36,12 +36,12 @@ export default function TicketCard({ booking, children }) {
     <article className="overflow-hidden rounded-2xl border border-ink-100 bg-white shadow-[0_18px_50px_-30px_rgba(6,11,20,0.5)]">
       <div className="flex flex-wrap items-start justify-between gap-4 bg-ink-950 p-5 text-white sm:p-6">
         <div className="flex items-start gap-3">
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-amber-400 font-display text-sm font-extrabold text-ink-950">
-            {train ? train.number.slice(-2) : "RS"}
+          <span className="grid h-11 w-14 shrink-0 place-items-center rounded-md bg-amber-400 font-mono text-[10px] font-bold tracking-tight text-ink-950">
+            {train ? train.number : "RS"}
           </span>
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-300">
-              {train ? train.number : booking.trainNumber}
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-300">
+              E-ticket · Indian Railways
             </p>
             <h3 className="font-display text-lg font-bold leading-tight">{train?.name || "RailSetu Express"}</h3>
             <p className="mt-0.5 text-xs text-ink-300">

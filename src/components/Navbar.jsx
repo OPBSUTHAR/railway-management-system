@@ -31,8 +31,10 @@ const MENU_LINKS = [
 ];
 
 function navClass({ isActive }) {
-  return `relative rounded-full px-3.5 py-2 text-sm font-medium transition ${
-    isActive ? "bg-white/10 text-white" : "text-white/65 hover:bg-white/5 hover:text-white"
+  return `relative px-3.5 py-2 text-sm font-semibold transition ${
+    isActive
+      ? "text-amber-300 after:absolute after:inset-x-2 after:-bottom-3 after:h-0.5 after:bg-amber-400"
+      : "text-white/65 hover:text-white"
   }`;
 }
 
@@ -80,7 +82,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           {user ? (
             <div className="relative" ref={menuRef}>
               <button
@@ -147,7 +149,7 @@ export default function Navbar() {
               >
                 Log in
               </Link>
-              <Link to="/signup" className="btn-amber !px-4 !py-2 text-sm">
+              <Link to="/signup" className="btn-amber shrink-0 whitespace-nowrap !px-3 !py-2 text-sm sm:!px-4">
                 Sign up
               </Link>
             </>
@@ -156,7 +158,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/80 transition hover:bg-white/10 lg:hidden"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/15 text-white/80 transition hover:bg-white/10 lg:hidden"
             aria-label="Toggle navigation"
             aria-expanded={mobileOpen}
           >
@@ -174,8 +176,8 @@ export default function Navbar() {
                 to={link.to}
                 end={link.end}
                 className={({ isActive }) =>
-                  `rounded-xl px-3 py-3 text-base font-medium transition ${
-                    isActive ? "bg-white/10 text-white" : "text-white/70 hover:bg-white/5 hover:text-white"
+                  `rounded-md px-3 py-3 text-base font-medium transition ${
+                    isActive ? "border-l-2 border-amber-400 bg-white/5 pl-4 text-amber-300" : "text-white/70 hover:bg-white/5 hover:text-white"
                   }`
                 }
               >

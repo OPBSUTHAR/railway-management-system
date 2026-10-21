@@ -30,7 +30,7 @@ export default function Logo({ dark = false, compact = false, className = "" }) 
         </span>
         {!compact ? (
           <span
-            className={`mt-1.5 block text-[9px] font-semibold uppercase tracking-[0.2em] ${
+            className={`mt-1.5 hidden text-[9px] font-semibold uppercase tracking-[0.2em] min-[360px]:block ${
               dark ? "text-white/40" : "text-ink-400"
             }`}
           >

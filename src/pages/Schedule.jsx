@@ -109,8 +109,8 @@ export default function Schedule() {
                   onClick={() => setExpanded(open ? null : train.number)}
                   className="flex w-full flex-wrap items-center gap-4 p-4 text-left sm:p-5"
                 >
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink-950 font-mono text-[10px] font-bold text-amber-300">
-                    {train.number.slice(-2)}
+                  <span className="grid h-11 w-14 shrink-0 place-items-center rounded-md bg-ink-950 font-mono text-[11px] font-bold tracking-tight text-amber-300">
+                    {train.number}
                   </span>
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
