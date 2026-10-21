@@ -790,20 +790,21 @@ body {
 
 .ambient-wash {
   background:
-    radial-gradient(58rem 42rem at 88% -10%, rgba(245, 184, 0, 0.2), transparent 64%),
-    radial-gradient(52rem 42rem at -8% 26%, rgba(23, 58, 86, 0.16), transparent 68%),
+    radial-gradient(58rem 42rem at 88% -10%, rgba(245, 184, 0, 0.28), transparent 64%),
+    radial-gradient(52rem 42rem at -8% 26%, rgba(23, 58, 86, 0.22), transparent 68%),
+    radial-gradient(44rem 34rem at 58% 108%, rgba(180, 83, 9, 0.12), transparent 68%),
     linear-gradient(155deg, #eef3f7 0%, #e8eef3 55%, #f4f0e6 100%);
 }
 
 .ambient-grid {
   background-image:
-    linear-gradient(rgba(8, 28, 45, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(8, 28, 45, 0.06) 1px, transparent 1px);
+    linear-gradient(rgba(8, 28, 45, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(8, 28, 45, 0.075) 1px, transparent 1px);
   background-size: 72px 72px;
 }
 
 .ambient-blob {
-  opacity: 0.34;
+  opacity: 0.42;
   filter: blur(72px);
 }
 
@@ -827,15 +828,21 @@ body {
 /* Wide, solid "station panels" replace the floating glass bubbles */
 .bubble-surface,
 .site-glass main section.bubble-section {
-  border: 1px solid #c9d5df;
+  border: 1px solid rgba(201, 213, 223, 0.92);
   border-radius: 0.9rem;
-  background-color: #fbf9f3;
-  background-image: none;
+  background-color: rgba(251, 249, 243, 0.82);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.56) 0%,
+    rgba(255, 255, 255, 0.06) 46%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
   box-shadow:
     inset 0 3px 0 #f2b500,
-    0 22px 48px -42px rgba(7, 21, 33, 0.55),
+    0 26px 54px -44px rgba(7, 21, 33, 0.62),
     inset 0 1px 0 #ffffff;
-  backdrop-filter: none;
+  -webkit-backdrop-filter: blur(12px) saturate(118%);
+  backdrop-filter: blur(12px) saturate(118%);
 }
 
 .site-glass main section.bubble-section {
@@ -845,15 +852,20 @@ body {
 }
 
 .site-glass main section.bubble-section:nth-of-type(even) {
-  background-color: #f7f3e9;
+  background-color: rgba(247, 243, 233, 0.8);
 }
 
 /* Crisp ticket cards instead of translucent bubbles */
 .site-glass :is(.rounded-xl, .rounded-2xl, .rounded-3xl).bg-white:not(.field) {
-  border: 1px solid #d6dfe7;
+  border: 1px solid rgba(214, 223, 231, 0.9);
   border-radius: 0.7rem;
-  background-color: #fffdf8;
-  background-image: none;
+  background-color: rgba(255, 253, 248, 0.84);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.1) 55%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
   box-shadow:
     0 1px 0 #ffffff inset,
     0 16px 32px -30px rgba(7, 21, 33, 0.5);
@@ -926,12 +938,37 @@ body {
 }
 
 .search-bubble {
-  border: 1px solid #b9c6d2;
+  border: 1px solid rgba(185, 198, 210, 0.9);
   border-radius: 0.7rem;
-  background-color: #fffdf8;
-  background-image: none;
+  background-color: rgba(255, 253, 248, 0.88);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.08) 52%,
+    rgba(255, 255, 255, 0.24) 100%
+  );
   box-shadow: 0 30px 60px -42px rgba(7, 21, 33, 0.75);
-  backdrop-filter: none;
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  backdrop-filter: blur(16px) saturate(120%);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .bubble-surface,
+  .site-glass main section.bubble-section {
+    background-color: rgba(251, 249, 243, 0.94);
+  }
+
+  .site-glass main section.bubble-section:nth-of-type(even) {
+    background-color: rgba(247, 243, 233, 0.94);
+  }
+
+  .site-glass :is(.rounded-xl, .rounded-2xl, .rounded-3xl).bg-white:not(.field) {
+    background-color: rgba(255, 253, 248, 0.95);
+  }
+
+  .search-bubble {
+    background-color: rgba(255, 253, 248, 0.97);
+  }
 }
 
 .search-bubble .field-label {
