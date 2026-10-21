@@ -46,8 +46,9 @@ export default function Login() {
 
   return (
     <AuthLayout
-      image="/images/booking.webp"
-      alt="Passengers boarding a train"
+      image="/images/auth-login.webp"
+      imageSrcSet="/images/auth-login-700.webp 700w, /images/auth-login-1000.webp 1000w, /images/auth-login.webp 1400w"
+      alt="Nilgiri Mountain Railway train crossing a stone viaduct"
       eyebrow="Welcome back"
       title="Sign in and pick up where you left off"
       subtitle="Your tickets, seat reservations and support threads live in one tidy account."
@@ -60,7 +61,7 @@ export default function Login() {
         </>
       }
     >
-      <form onSubmit={submit} className="space-y-4">
+      <form onSubmit={submit} className="space-y-3">
         {error ? (
           <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700" role="alert">
             {error}
@@ -112,7 +113,7 @@ export default function Login() {
         </button>
       </form>
 
-      <div className="mt-5 rounded-xl border border-dashed border-ink-200 bg-ink-50/70 p-4">
+      <div className="mt-4 rounded-xl border border-dashed border-ink-200 bg-ink-50/70 p-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-ink-600">Just exploring?</p>
@@ -126,7 +127,7 @@ export default function Login() {
         </div>
       </div>
 
-      <p className="mt-6 rounded-lg bg-amber-50 px-3 py-2 text-[11px] leading-relaxed text-amber-800">
+      <p className="mt-4 rounded-lg bg-amber-50 px-3 py-2 text-[11px] leading-relaxed text-amber-800">
         Demo site: accounts and bookings are stored only in this browser's local storage. Do not use real passwords.
       </p>
     </AuthLayout>

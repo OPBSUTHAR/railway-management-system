@@ -26,6 +26,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -262,6 +264,70 @@
 
 .site-glass [class~="bg-sky-50"] {
   background-color: rgb(240 249 255 / 0.42);
+}
+
+/* Auth layout: fill the viewport on desktop, scroll only the form panel when needed */
+.auth-shell {
+  min-height: 100vh;
+}
+
+@supports (min-height: 100dvh) {
+  .auth-shell {
+    min-height: 100dvh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .auth-shell {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .auth-form-panel {
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .auth-visual {
+    height: 100%;
+  }
+}
+
+/* Short laptop screens (e.g. 1280×720): tighten the panel instead of scrolling */
+@media (min-width: 1024px) and (max-height: 760px) {
+  .auth-form-panel {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .auth-form-panel .bubble-surface {
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .auth-form-panel h1 {
+    font-size: 1.65rem;
+    line-height: 1.12;
+  }
+
+  .auth-form-panel .eyebrow {
+    margin-top: 0.75rem;
+  }
+
+  .auth-form-panel h1 + p {
+    margin-top: 0.35rem;
+  }
+}
+
+/* iOS Safari zooms the page when a focused control is under 16px */
+@media (max-width: 1023px) {
+  .field {
+    font-size: 1rem;
+  }
 }
 
 .search-bubble {

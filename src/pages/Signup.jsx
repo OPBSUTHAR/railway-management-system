@@ -49,8 +49,9 @@ export default function Signup() {
 
   return (
     <AuthLayout
-      image="/images/tours.jpg"
-      alt="Scenic rail route through the mountains"
+      image="/images/auth-signup.webp"
+      imageSrcSet="/images/auth-signup-700.webp 700w, /images/auth-signup-1000.webp 1000w, /images/auth-signup.webp 1400w"
+      alt="Train crossing the Pamban bridge over the sea"
       eyebrow="Join RailSetu"
       title="Create your travel account in seconds"
       subtitle="Book tickets, reserve seats and track trains — no paperwork, no queues."
@@ -63,14 +64,14 @@ export default function Signup() {
         </>
       }
     >
-      <form onSubmit={submit} className="space-y-4">
+      <form onSubmit={submit} className="space-y-3">
         {error ? (
           <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700" role="alert">
             {error}
           </div>
         ) : null}
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           <label className="block">
             <span className="field-label">Full name</span>
             <input
@@ -107,7 +108,7 @@ export default function Signup() {
           />
         </label>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           <label className="block">
             <span className="field-label">Password</span>
             <div className="relative mt-1.5">
@@ -166,7 +167,7 @@ export default function Signup() {
         </button>
       </form>
 
-      <p className="mt-6 rounded-lg bg-amber-50 px-3 py-2 text-[11px] leading-relaxed text-amber-800">
+      <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-[11px] leading-relaxed text-amber-800">
         Demo site: sign-up data is saved in your browser only. Never enter a password you use elsewhere.
       </p>
     </AuthLayout>

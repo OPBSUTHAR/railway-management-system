@@ -136,6 +136,11 @@ npm start
 - Live tracking is a simulation derived from the timetable and current clock time, not a real GPS feed.
 - The original hero footage was compressed for the web; the full-resolution source is intentionally not committed.
 
+## Image credits
+
+- Login photograph: [“Nilgiri Queen Crosses a River”](https://commons.wikimedia.org/wiki/File:Nilgiri_Queen_Crosses_a_River_(15408096996).jpg) by David Brossard, licensed under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
+- Sign-up photograph: [“Pamban Bridge Train Passing”](https://commons.wikimedia.org/wiki/File:Pamban_Bridge_Train_Passing.jpg) by Shaswat Nimesh, licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
 ## License
 
 Released for educational and portfolio use. Third-party images and timetables remain the property of their respective owners.
