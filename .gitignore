@@ -34,3 +34,6 @@ Thumbs.db
 # Misc
 *.local
 coverage/
+
+.vercel
+.env*

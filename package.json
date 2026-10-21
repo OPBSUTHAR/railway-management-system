@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "engines": {
-    "node": ">=20.19"
+    "node": "24.x"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

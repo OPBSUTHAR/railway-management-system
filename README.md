@@ -78,7 +78,7 @@ npm run build    # production build in dist/
 npm run preview  # preview the production build
 ```
 
-Requires Node.js **20.19+**. No environment variables are needed for the demo.
+Requires Node.js **24.x** (Vite 7 also supports 20.19+). No environment variables are needed for the demo.
 
 ### Deploy to Vercel
 
