@@ -105,7 +105,7 @@ export default function Terms() {
         }
       />
 
-      <section className="container-x py-10">
+      <section className="bubble-section container-x py-10">
         <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:items-start">
           <aside className="card sticky top-24 hidden p-4 lg:block">
             <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-ink-400">

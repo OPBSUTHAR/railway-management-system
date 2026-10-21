@@ -146,7 +146,7 @@ export default function Tracking() {
         }
       />
 
-      <section className="container-x py-10">
+      <section className="bubble-section container-x py-10">
         <div className="grid gap-6 lg:grid-cols-[1.35fr_1fr] lg:items-start">
           <div className="card overflow-hidden">
             <div className="relative">

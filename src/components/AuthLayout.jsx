@@ -3,8 +3,8 @@ import Logo from "./Logo";
 export default function AuthLayout({ image = "/images/journey.jpg", alt, eyebrow, title, subtitle, children, footer }) {
   return (
     <div className="grid min-h-screen lg:grid-cols-[1fr_0.9fr]">
-      <div className="flex items-center justify-center px-5 py-12 sm:px-8 sm:py-16">
-        <div className="w-full max-w-md">
+      <div className="flex items-center justify-center px-4 py-8 sm:px-8 sm:py-12">
+        <div className="bubble-surface w-full max-w-md px-6 py-8 sm:px-8">
           <Logo />
           <p className="eyebrow mt-8 flex text-amber-700">
             <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />

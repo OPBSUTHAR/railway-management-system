@@ -136,7 +136,7 @@ export default function Reservation() {
         }
       />
 
-      <section className="container-x py-10">
+      <section className="bubble-section container-x py-10">
         <div className="grid gap-6 lg:grid-cols-[1fr_360px] lg:items-start">
           <div className="card p-5 sm:p-6">
             <div className="grid gap-3 sm:grid-cols-3">

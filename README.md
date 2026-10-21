@@ -34,7 +34,7 @@ The account is seeded on first load with a sample ticket (PNR `4820193756`, Mumb
 - **Operations console** — set a service to on time, delayed or cancelled; add and delete custom trains with generated routes. Great for showing how the timetable is managed.
 - **Help centre** — validated support form with reference numbers, a personal request history and FAQs.
 - **Authentication** — client-side accounts with SHA-256 password hashing, persistent sessions and protected routes.
-- **Interactive visual system** — a cinematic three-scene hero montage, translucent glass surfaces over a slowly drifting ambient background, route in/out transitions, and hover lift across cards and actions. Motion respects `prefers-reduced-motion`.
+- **Bubble-glass visual system** - a cinematic three-scene hero montage, frosted bubble panels for every section, card, header and footer, drifting ambient gradient blobs, route in/out transitions, and hover lift across cards and actions. Motion respects `prefers-reduced-motion`.
 - **Polish** — responsive layouts, custom SVG logo, accessible forms, toast notifications and print styles.
 
 ---

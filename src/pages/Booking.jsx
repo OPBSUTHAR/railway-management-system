@@ -341,7 +341,7 @@ export default function Booking() {
         }
       />
 
-      <section className="container-x py-8 sm:py-10">
+      <section className="bubble-section container-x py-8 sm:py-10">
         <div ref={flowRef} className="scroll-mt-24">
           <SearchBar
             initial={search}

@@ -181,7 +181,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container-x py-16 sm:py-20">
+      <section className="bubble-section container-x py-16 sm:py-20">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow text-amber-700">
@@ -246,7 +246,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-ink-100 bg-paper/70">
+      <section className="bubble-section bg-paper/70">
         <div className="container-x grid gap-10 py-16 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="relative">
             <div className="overflow-hidden rounded-3xl">
@@ -294,7 +294,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container-x py-16 sm:py-20">
+      <section className="bubble-section container-x py-16 sm:py-20">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="min-w-0 rounded-3xl border border-ink-100 bg-white p-6 sm:p-8">
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -372,7 +372,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container-x pb-16 sm:pb-20">
+      <section className="bubble-section container-x pb-16 sm:pb-20">
         <div className="relative overflow-hidden rounded-3xl bg-ink-900 px-6 py-10 text-white sm:px-12 sm:py-14">
           <div className="absolute inset-0 grid-lines opacity-40" />
           <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-amber-400/20 blur-3xl" />

@@ -79,7 +79,7 @@ export default function MyBookings() {
         </div>
       </PageHero>
 
-      <section className="container-x py-10">
+      <section className="bubble-section container-x py-10">
         <div className="flex flex-wrap gap-2">
           {TABS.map((item) => {
             const count = item.id === "ALL" ? bookings.length : bookings.filter((booking) => booking.status === item.id).length;

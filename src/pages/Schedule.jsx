@@ -59,7 +59,7 @@ export default function Schedule() {
         }
       />
 
-      <section className="container-x py-10">
+      <section className="bubble-section container-x py-10">
         <div className="card p-4 sm:p-5">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
             <div className="relative flex-1">

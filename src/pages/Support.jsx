@@ -118,7 +118,7 @@ export default function Support() {
         }
       />
 
-      <section className="container-x py-10">
+      <section className="bubble-section container-x py-10">
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
           <div className="card p-5 sm:p-6">
             <div className="flex items-center gap-2">

@@ -49,7 +49,7 @@ export default function About() {
         }
       />
 
-      <section className="container-x py-14 sm:py-16">
+      <section className="bubble-section container-x py-14 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="relative">
             <div className="overflow-hidden rounded-3xl">
@@ -97,7 +97,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="border-y border-ink-100 bg-paper/70">
+      <section className="bubble-section bg-paper/70">
         <div className="container-x py-14 sm:py-16">
           <div className="max-w-2xl">
             <p className="eyebrow text-amber-700">
@@ -119,7 +119,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="container-x py-14 sm:py-16">
+      <section className="bubble-section container-x py-14 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="eyebrow text-amber-700">
@@ -157,7 +157,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="container-x pb-16">
+      <section className="bubble-section container-x pb-16">
         <div className="grid gap-6 rounded-3xl border border-ink-100 bg-white p-6 sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink-950 text-amber-300">

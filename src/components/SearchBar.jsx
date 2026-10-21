@@ -30,7 +30,7 @@ export default function SearchBar({ initial, onSubmit, className = "" }) {
   }
 
   return (
-    <form onSubmit={submit} className={`rounded-2xl border border-white/70 bg-white/85 p-3 shadow-2xl backdrop-blur-2xl sm:p-4 ${className}`}>
+    <form onSubmit={submit} className={`search-bubble rounded-2xl p-3 shadow-2xl sm:p-4 ${className}`}>
       <div className="grid gap-2 md:grid-cols-[1fr_1fr_auto_1.1fr_auto] md:items-end">
         <label className="relative block px-3 py-2">
           <span className="field-label flex items-center gap-1">

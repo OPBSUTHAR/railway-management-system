@@ -3,7 +3,7 @@ import { ArrowRight, Home, MapPin, TrainFront } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <section className="container-x flex min-h-[70vh] flex-col items-center justify-center py-16 text-center">
+    <section className="bubble-section container-x flex min-h-[70vh] flex-col items-center justify-center py-16 text-center">
       <div className="relative">
         <p className="font-display text-[110px] font-extrabold leading-none tracking-tighter text-ink-100 sm:text-[160px]">404</p>
         <span className="absolute inset-0 grid place-items-center">
