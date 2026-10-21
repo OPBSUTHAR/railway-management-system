@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation - Railway Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+      /* Internal CSS for background gradient */
+  body {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Center the form and table */
+  main {
+    width: 60%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+  }
+
+  /* Style form inputs */
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* Button Styling */
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1e3c72;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+
+  button:hover {
+    background-color: #163b66;
+  }
+
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    color: black;
+  }
+
+  th, td {
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  th {
+    background: #1e3c72;
+    color: white;
+  }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="scheduling.html">Scheduling</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="termsandconditions.html">Terms & Conditions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Reservation</h1>
+    <form id="reservationForm">
+      <label for="train">Train Number/Name:</label>
+      <input type="text" id="train" name="train" required>
+
+      <label for="seat">Seat Preference:</label>
+      <select id="seat" name="seat">
+        <option value="window">Window</option>
+        <option value="aisle">Aisle</option>
+        <option value="middle">Middle</option>
+      </select>
+
+      <button type="submit">Reserve Now</button>
+    </form>
+
+    <h2>Reservation Details</h2>
+    <table border="1" id="reservationTable">
+      <thead>
+        <tr>
+          <th>Train Number/Name</th>
+          <th>Seat Preference</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dynamic content will be added here -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    &copy; 2025 Railway Management System. All Rights Reserved.
+  </footer>
+  
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('reservationForm').addEventListener('submit', async function(event) {
+      event.preventDefault(); // Prevent page refresh
+
+      let train = document.getElementById('train').value.trim();
+      let seat = document.getElementById('seat').value;
+
+      if (!train) {
+        alert("Train Number/Name is required!");
+        return;
+      }
+
+      let formData = { train, seat };
+
+      try {
+        let response = await fetch('/reserve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        let result = await response.json();
+        if (response.ok) {
+          addTableRow(train, seat);
+          document.getElementById('reservationForm').reset();
+        } else {
+          alert(result.error || "Error processing request!");
+        }
+      } catch (error) {
+        console.error("Request failed:", error);
+        alert("Failed to connect to the server.");
+      }
+    });
+
+    function addTableRow(train, seat) {
+      let table = document.getElementById('reservationTable').getElementsByTagName('tbody')[0];
+      let newRow = table.insertRow();
+      
+      let trainCell = newRow.insertCell(0);
+      let seatCell = newRow.insertCell(1);
+      let actionCell = newRow.insertCell(2);
+
+      trainCell.textContent = train;
+      seatCell.textContent = seat;
+
+      let editButton = document.createElement("button");
+      editButton.textContent = "Edit";
+      editButton.onclick = function() { editRow(newRow, train, seat); };
+      
+      let removeButton = document.createElement("button");
+      removeButton.textContent = "Remove";
+      removeButton.onclick = function() { removeRow(newRow, train); };
+
+      actionCell.appendChild(editButton);
+      actionCell.appendChild(removeButton);
+    }
+
+    function editRow(row, train, seat) {
+      let newTrain = prompt("Edit Train Name:", train);
+      let newSeat = prompt("Edit Seat Preference:", seat);
+
+      if (newTrain && newSeat) {
+        row.cells[0].textContent = newTrain;
+        row.cells[1].textContent = newSeat;
+      }
+    }
+
+    function removeRow(row, train) {
+      if (confirm(`Are you sure you want to delete reservation for ${train}?`)) {
+        row.remove();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script>
+        async function handleSignup(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("http://localhost:3000/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Signup successful! Please log in.");
+                window.location.href = "login.html"; // Redirect to login page
+            } else {
+                alert(data.error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Create an Account</h1>
+            <p>Sign up to access your dashboard</p>
+            <form onsubmit="handleSignup(event)">
+                <div class="input-group">
+                    <input type="text" id="username" name="username" required />
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" required />
+                    <label for="password">Password</label>
+                </div>
+                <button type="submit" class="login-btn">Sign Up</button>
+            </form>
+            <div class="links">
+                <a href="login.html">Already have an account? Log in</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

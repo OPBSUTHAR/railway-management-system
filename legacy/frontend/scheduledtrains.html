@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Schedule Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            display: none;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.5s, transform 0.3s ease-in-out;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr {
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+            transform: scale(1.02);
+        }
+        nav {
+            margin-bottom: 20px;
+            background-color: #333;
+            padding: 10px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #007bff;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="scheduling.html">Scheduling</a>
+    </nav>
+    
+    <h2>Train Schedule Search</h2>
+    <input type="text" id="trainNumber" placeholder="Enter Train Number">
+    <button onclick="searchTrain()">Search</button>
+
+    <table id="scheduleTable">
+        <thead>
+            <tr>
+                <th>Station Code</th>
+                <th>Station Name</th>
+                <th>Arrival Time</th>
+                <th>Departure Time</th>
+                <th>Halt Time (min)</th>
+                <th>Distance (km)</th>
+                <th>Day</th>
+            </tr>
+        </thead>
+        <tbody id="scheduleBody"></tbody>
+    </table>
+
+    <script>
+        const trainData = {
+            "16528": [
+                { code: "CAN", name: "Kannur", arrival: "--", departure: "18:05", halt: "--", distance: "0", day: "1" },
+                { code: "TLY", name: "Thalassery", arrival: "18:24", departure: "18:25", halt: "01", distance: "21", day: "1" },
+                { code: "BDJ", name: "Vadakara", arrival: "18:39", departure: "18:40", halt: "01", distance: "43", day: "1" },
+                { code: "QLD", name: "Quilandi", arrival: "18:59", departure: "19:00", halt: "01", distance: "65", day: "1" }
+            ],
+            "16529": [
+                { code: "QLD", name: "Quilandi", arrival: "--", departure: "18:05", halt: "--", distance: "0", day: "1" },
+                { code: "BDJ", name: "Vadakara", arrival: "18:24", departure: "18:25", halt: "01", distance: "21", day: "1" },
+                { code: "TLY", name: "Thalassery", arrival: "18:39", departure: "18:40", halt: "01", distance: "43", day: "1" },
+                { code: "CAN", name: "Kannur", arrival: "18:59", departure: "19:00", halt: "01", distance: "65", day: "1" }
+            ],
+            "16530": [
+                { code: "QLD", name: "Quilandi", arrival: "--", departure: "18:05", halt: "--", distance: "0", day: "1" },
+                { code: "BDJ", name: "Vadakara", arrival: "18:24", departure: "18:25", halt: "01", distance: "21", day: "1" },
+                { code: "TLY", name: "Thalassery", arrival: "18:39", departure: "18:40", halt: "01", distance: "43", day: "1" },
+                { code: "CAN", name: "Kannur", arrival: "18:59", departure: "19:00", halt: "01", distance: "65", day: "1" }
+            ],
+            "16531": [
+                { code: "CAN", name: "Kannur", arrival: "--", departure: "18:05", halt: "--", distance: "0", day: "1" },
+                { code: "TLY", name: "Thalassery", arrival: "18:24", departure: "18:25", halt: "01", distance: "21", day: "1" },
+                { code: "BDJ", name: "Vadakara", arrival: "18:39", departure: "18:40", halt: "01", distance: "43", day: "1" },
+                { code: "QLD", name: "Quilandi", arrival: "18:59", departure: "19:00", halt: "01", distance: "65", day: "1" },
+                { code: "CLT", name: "Kozhikode", arrival: "19:30", departure: "19:35", halt: "05", distance: "90", day: "1" },
+                { code: "VGA", name: "Vijayawada", arrival: "20:15", departure: "20:20", halt: "05", distance: "130", day: "1" },
+                { code: "TDD", name: "Tadepalligudem", arrival: "20:45", departure: "20:50", halt: "05", distance: "160", day: "1" },
+                { code: "RJY", name: "Rajahmundry", arrival: "21:15", departure: "21:20", halt: "05", distance: "190", day: "1" },
+                { code: "EE", name: "Eluru", arrival: "21:45", departure: "21:50", halt: "05", distance: "220", day: "1" },
+                { code: "BZA", name: "Vijayawada Junction", arrival: "22:45", departure: "--", halt: "--", distance: "250", day: "1" }
+            ],
+            "16577": [
+                { code: "CAN", name: "Kannur", arrival: "--", departure: "18:05", halt: "--", distance: "0", day: "1" },
+                { code: "TLY", name: "Thalassery", arrival: "18:24", departure: "18:25", halt: "01", distance: "21", day: "1" },
+                { code: "BDJ", name: "Vadakara", arrival: "18:39", departure: "18:40", halt: "01", distance: "43", day: "1" },
+                { code: "QLD", name: "Quilandi", arrival: "18:59", departure: "19:00", halt: "01", distance: "65", day: "1" }
+            ],
+            "16580": [
+                { code: "QLD", name: "Quilandi", arrival: "--", departure: "18:05", halt: "--", distance: "0", day: "1" },
+                { code: "BDJ", name: "Vadakara", arrival: "18:24", departure: "18:25", halt: "01", distance: "21", day: "1" },
+                { code: "TLY", name: "Thalassery", arrival: "18:39", departure: "18:40", halt: "01", distance: "43", day: "1" },
+                { code: "CAN", name: "Kannur", arrival: "18:59", departure: "19:00", halt: "01", distance: "65", day: "1" },
+                { code: "CLT", name: "Kozhikode", arrival: "19:30", departure: "19:35", halt: "05", distance: "90", day: "1" },
+                { code: "VGA", name: "Vijayawada", arrival: "20:15", departure: "20:20", halt: "05", distance: "130", day: "1" },
+                { code: "TDD", name: "Tadepalligudem", arrival: "20:45", departure: "20:50", halt: "05", distance: "160", day: "1" },
+                { code: "RJY", name: "Rajahmundry", arrival: "21:15", departure: "21:20", halt: "05", distance: "190", day: "1" },
+                { code: "EE", name: "Eluru", arrival: "21:45", departure: "21:50", halt: "05", distance: "220", day: "1" },
+                { code: "BZA", name: "Vijayawada Junction", arrival: "22:45", departure: "--", halt: "--", distance: "250", day: "1" },
+                { code: "TEL", name: "Tenali Junction", arrival: "23:30", departure: "23:35", halt: "05", distance: "280", day: "1" },
+                { code: "BPP", name: "Bapatla", arrival: "00:00", departure: "00:05", halt: "05", distance: "310", day: "2" },
+                { code: "NDO", name: "Nidubrolu", arrival: "00:20", departure: "00:25", halt: "05", distance: "340", day: "2" },
+                { code: "TEN", name: "Tenali", arrival: "00:40", departure: "00:45", halt: "05", distance: "370", day: "2" },
+                { code: "BZA", name: "Vijayawada Junction", arrival: "01:30", departure: "--", halt: "--", distance: "400", day: "2" },
+                { code: "BVRT", name: "Bhavanapadu Road", arrival: "02:15", departure: "02:20", halt: "05", distance: "430", day: "2" },
+                { code: "VZM", name: "Vizianagaram Junction", arrival: "03:00", departure: "03:05", halt: "05", distance: "460", day: "2" },
+                { code: "VSKP", name: "Visakhapatnam Junction", arrival: "04:00", departure: "--", halt: "--", distance: "490", day: "2" }
+            ],
+            "2443150": [
+                { code: "CAN", name: "Kannur", arrival: "--", departure: "18:05", halt: "--", distance: "0", day: "1" },
+                { code: "TLY", name: "Thalassery", arrival: "18:24", departure: "18:25", halt: "01", distance: "21", day: "1" },
+                { code: "BDJ", name: "Vadakara", arrival: "18:39", departure: "18:40", halt: "01", distance: "43", day: "1" },
+                { code: "QLD", name: "Quilandi", arrival: "18:59", departure: "19:00", halt: "01", distance: "65", day: "1" },
+                { code: "CLT", name: "Kozhikode", arrival: "19:30", departure: "19:35", halt: "05", distance: "90", day: "1" },
+                { code: "VGA", name: "Vijayawada", arrival: "20:15", departure: "20:20", halt: "05", distance: "130", day: "1" },
+                { code: "TDD", name: "Tadepalligudem", arrival: "20:45", departure: "20:50", halt: "05", distance: "160", day: "1" },
+                { code: "RJY", name: "Rajahmundry", arrival: "21:15", departure: "21:20", halt: "05", distance: "190", day: "1" },
+                { code: "EE", name: "Eluru", arrival: "21:45", departure: "21:50", halt: "05", distance: "220", day: "1" },
+                { code: "BZA", name: "Vijayawada Junction", arrival: "22:45", departure: "--", halt: "--", distance: "250", day: "1" },
+                { code: "TEL", name: "Tenali Junction", arrival: "23:30", departure: "23:35", halt: "05", distance: "280", day: "1" },
+                { code: "BPP", name: "Bapatla", arrival: "00:00", departure: "00:05", halt: "05", distance: "310", day: "2" },
+                { code: "NDO", name: "Nidubrolu", arrival: "00:20", departure: "00:25", halt: "05", distance: "340", day: "2" },
+                { code: "TEN", name: "Tenali", arrival: "00:40", departure: "00:45", halt: "05", distance: "370", day: "2" },
+                { code: "BZA", name: "Vijayawada Junction", arrival: "01:30", departure: "--", halt: "--", distance: "400", day: "2" },
+                { code: "BVRT", name: "Bhavanapadu Road", arrival: "02:15", departure: "02:20", halt: "05", distance: "430", day: "2" },
+                { code: "VZM", name: "Vizianagaram Junction", arrival: "03:00", departure: "03:05", halt: "05", distance: "460", day: "2" },
+                { code: "VSKP", name: "Visakhapatnam Junction", arrival: "04:00", departure: "--", halt: "--", distance: "490", day: "2" }
+            ],
+            "2443119": [
+                { code: "CAN", name: "Kannur", arrival: "--", departure: "18:05", halt: "--", distance: "0", day: "1" },
+                { code: "TLY", name: "Thalassery", arrival: "18:24", departure: "18:25", halt: "01", distance: "21", day: "1" },
+                { code: "BDJ", name: "Vadakara", arrival: "18:39", departure: "18:40", halt: "01", distance: "43", day: "1" },
+                { code: "QLD", name: "Quilandi", arrival: "18:59", departure: "19:00", halt: "01", distance: "65", day: "1" },
+                { code: "CLT", name: "Kozhikode", arrival: "19:30", departure: "19:35", halt: "05", distance: "90", day: "1" },
+                { code: "VGA", name: "Vijayawada", arrival: "20:15", departure: "20:20", halt: "05", distance: "130", day: "1" },
+                { code: "TDD", name: "Tadepalligudem", arrival: "20:45", departure: "20:50", halt: "05", distance: "160", day: "1" },
+                { code: "RJY", name: "Rajahmundry", arrival: "21:15", departure: "21:20", halt: "05", distance: "190", day: "1" },
+                { code: "EE", name: "Eluru", arrival: "21:45", departure: "21:50", halt: "05", distance: "220", day: "1" },
+                { code: "BZA", name: "Vijayawada Junction", arrival: "22:45", departure: "--", halt: "--", distance: "250", day: "1" },
+                { code: "TEL", name: "Tenali Junction", arrival: "23:30", departure: "23:35", halt: "05", distance: "280", day: "1" },
+                { code: "BPP", name: "Bapatla", arrival: "00:00", departure: "00:05", halt: "05", distance: "310", day: "2" },
+                { code: "NDO", name: "Nidubrolu", arrival: "00:20", departure: "00:25", halt: "05", distance: "340", day: "2" },
+                { code: "TEN", name: "Tenali", arrival: "00:40", departure: "00:45", halt: "05", distance: "370", day: "2" },
+                { code: "BZA", name: "Vijayawada Junction", arrival: "01:30", departure: "--", halt: "--", distance: "400", day: "2" },
+                { code: "BVRT", name: "Bhavanapadu Road", arrival: "02:15", departure: "02:20", halt: "05", distance: "430", day: "2" },
+                { code: "VZM", name: "Vizianagaram Junction", arrival: "03:00", departure: "03:05", halt: "05", distance: "460", day: "2" },
+                { code: "VSKP", name: "Visakhapatnam Junction", arrival: "04:00", departure: "--", halt: "--", distance: "490", day: "2" }
+        };
+
+        function searchTrain() {
+    let trainNum = document.getElementById("trainNumber").value.trim();
+    let table = document.getElementById("scheduleTable");
+    let tbody = document.getElementById("scheduleBody");
+    let inputField = document.getElementById("trainNumber");
+
+    tbody.innerHTML = ""; // Clear previous results
+
+    if (!trainNum) {
+        alert("Please enter a train number.");
+        table.style.display = "none";
+        return;
+    }
+
+    if (trainData.hasOwnProperty(trainNum)) { // Check if train exists in data
+        trainData[trainNum].forEach(station => {
+            let row = `<tr>
+                <td>${station.code}</td>
+                <td>${station.name}</td>
+                <td>${station.arrival}</td>
+                <td>${station.departure}</td>
+                <td>${station.halt}</td>
+                <td>${station.distance}</td>
+                <td>${station.day}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+        table.style.display = "table";
+        table.style.opacity = "1";
+        table.style.transform = "scale(1)";
+    } else {
+        inputField.classList.add("shake");
+        inputField.style.borderColor = "red";
+        setTimeout(() => {
+            inputField.classList.remove("shake");
+            inputField.style.borderColor = "#ccc";
+        }, 600);
+        alert("Train number not found!");
+        table.style.display = "none";
+    }
+}
+
+    </script>
+</body>
+</html>

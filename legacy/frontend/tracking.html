@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Train Tracking - Railway Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="icon" href="rail-favicon.webp" type="image/x-icon" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .navbar {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+      }
+      .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 14px 20px;
+        display: inline-block;
+      }
+      .navbar a:hover {
+        background-color: #575757;
+      }
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      .form-section {
+        width: 40%;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-top: 15px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .map-section {
+        width: 55%;
+        position: relative;
+      }
+      #map {
+        height: 450px;
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      #trainStatus {
+        margin-top: 20px;
+        font-size: 1.2em;
+        text-align: center;
+        color: green;
+      }
+
+      /* Footer */
+      footer {
+        background: rgba(51, 51, 51, 0.9);
+        color: #fff;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 1;
+      }
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .footer-links a {
+        color: #ffcc00;
+        text-decoration: none;
+        margin: 0 10px;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+      .footer-links a:hover {
+        color: #fff;
+      }
+      .social-icons {
+        margin-top: 10px;
+      }
+      .social-icons a img {
+        width: 24px;
+        height: 24px;
+        margin: 0 5px;
+        transition: transform 0.3s;
+      }
+      .social-icons a img:hover {
+        transform: scale(1.2);
+      }
+
+      body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #004e92, #00c6ff);
+  height: 100vh;
+}
+
+.navbar {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.form-section {
+  width: 40%;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.map-section {
+  width: 55%;
+  position: relative;
+}
+
+button {
+  background: linear-gradient(to right, #007bff, #0056b3);
+  transition: 0.3s;
+}
+
+button:hover {
+  background: linear-gradient(to right, #0056b3, #004080);
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="index.html">Home</a>
+      <a href="booking.html">Booking</a>
+      <a href="reservation.html">Reservation</a>
+      <a href="scheduling.html">Train Schedule</a>
+      <a href="support.html">Customer Support</a>
+    </div>
+
+    <h1 style="text-align: center; color: #333">Train Tracking</h1>
+
+    <div class="container">
+      <form id="trackingForm" class="form-section">
+        <label for="pnrNumber">Enter PNR Number:</label>
+        <input type="text" id="pnrNumber" required pattern="\d{10}" title="PNR must be 10 digits" />
+
+        <label for="trainNumber">Enter Train Number:</label>
+        <input type="text" id="trainNumber" required pattern="\d+" title="Train number must be numeric" />
+
+        <label for="fromStation">From Station:</label>
+        <input type="text" id="fromStation" required />
+
+        <label for="toStation">To Station:</label>
+        <input type="text" id="toStation" required />
+
+        <button type="submit">Track</button>
+      </form>
+
+      <div class="map-section">
+        <div id="map"></div>
+        <div style="text-align: center; margin-top: 10px;">
+          <button id="fetchLocation">📍 Fetch My Location</button>
+          <button id="refreshTracking">🔄 Refresh</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="trainStatus"></div>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 Railway Management System. All Rights Reserved.</p>
+        <div class="footer-links">
+          <a href="termsandconditions.html">Privacy Policy</a>
+          <a href="aboutus.html">Terms of Use</a>
+        </div>
+        <div class="social-icons">
+          <a href="https://facebook.com"><img src="icon-facebook.webp" alt="Facebook" target="_blank"/></a>
+          <a href="https://x.com"><img src="icon-twitter.webp" alt="Twitter" target="_blank"/></a>
+          <a href="https://instagram.com"><img src="icon-instagram.webp" alt="Instagram" target="_blankc"/></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      let map = L.map("map").setView([20.5937, 78.9629], 5);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+      }).addTo(map);
+      let markers = [];
+
+      function clearMarkers() {
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
+      }
+
+      function fetchTrainData() {
+        const trainNumber = document.getElementById("trainNumber").value.trim();
+        if (!trainNumber) {
+          alert("Please enter a valid train number.");
+          return;
+        }
+        
+        fetch(`/api/trackTrain?trainNumber=${trainNumber}`)
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById("trainStatus").innerText =
+              `Train ${trainNumber} is currently ${data.status} at ${data.currentStation}`;
+
+            if (data.location) {
+              clearMarkers();
+              let marker = L.marker([data.location.lat, data.location.lng])
+                .addTo(map)
+                .bindPopup(`Train ${trainNumber} Location`)
+                .openPopup();
+              markers.push(marker);
+              map.setView([data.location.lat, data.location.lng], 10);
+            }
+          })
+          .catch(() => alert("Error tracking the train."));
+      }
+
+      function fetchUserLocation() {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const userLocation = [position.coords.latitude, position.coords.longitude];
+            clearMarkers();
+            let marker = L.marker(userLocation)
+              .addTo(map)
+              .bindPopup("Your Location")
+              .openPopup();
+            markers.push(marker);
+            map.setView(userLocation, 10);
+          },
+          () => alert("Unable to retrieve your location.")
+        );
+      }
+
+      map.on("click", function (e) {
+        clearMarkers();
+        let marker = L.marker([e.latlng.lat, e.latlng.lng])
+          .addTo(map)
+          .bindPopup("Selected Location")
+          .openPopup();
+        markers.push(marker);
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${e.latlng.lat}&lon=${e.latlng.lng}`)
+          .then(response => response.json())
+          .then(data => alert(`Location: ${data.display_name}`));
+      });
+
+      function refreshMap() {
+        clearMarkers();
+        map.setView([20.5937, 78.9629], 5);
+        document.getElementById("trainStatus").innerText = "";
+      }
+
+      document.getElementById("trackingForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        fetchTrainData();
+      });
+
+      document.getElementById("fetchLocation").addEventListener("click", fetchUserLocation);
+      document.getElementById("refreshTracking").addEventListener("click", refreshMap);
+    </script>
+  </body>
+</html>

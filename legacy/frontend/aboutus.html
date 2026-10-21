@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Railway Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* General body background */
+    body {
+      background: linear-gradient(135deg, #f3f3f3, #e2e2e2); /* Light gradient for the body */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header background */
+    header {
+      background: linear-gradient(90deg, #ff6200, #e65500); /* IRCTC-inspired gradient */
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    header nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    /* Main section background */
+    main {
+      padding: 40px;
+      background: #ffffff; /* White background for main content */
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    main h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    main p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Image Section background */
+    .image-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      background: rgba(0, 0, 0, 0.05); /* Light background for the image section */
+      border-radius: 10px;
+    }
+
+    .tile {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      background: #fff; /* White background inside the tiles */
+    }
+
+    .tile:hover {
+      transform: scale(1.05);
+    }
+
+    .tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .tile .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)); /* Dark gradient overlay */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      opacity: 0.9;
+    }
+
+    .tile h3 {
+      margin: 10px 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    .tile a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 8px 16px;
+      background-color: #ff6200; /* IRCTC-inspired orange */
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .tile a:hover {
+      background-color: #e65500;
+    }
+
+    /* Footer background */
+    footer {
+      background-color: #2c3e50; /* Dark footer background */
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .company-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.05); /* Light grey background */
+  border-radius: 10px;
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+.company-logo {
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto; /* Centering */
+  border-radius: 10px; /* Optional: Adds smooth edges */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  transition: transform 0.3s ease-in-out;
+}
+
+.company-logo:hover {
+  transform: scale(1.05); /* Slight enlargement on hover */
+}
+
+.company-section h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.company-section p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="scheduling.html">Scheduling</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="termsandconditions.html">Terms & Conditions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>About Us</h1>
+    <p>In the heart of India, where the rhythm of life beats in sync with the clatter of wheels on tracks, the Indian Railway Management System was born. Established in 1853 with the first train chugging from Bombay to Thane, our story is one of resilience, innovation, and unity. Spanning over 67,000 kilometers today, we are the lifeline of a nation, connecting bustling cities like Delhi and Mumbai to the serene villages of Rajasthan and Kerala.</p>
+    <p>Our journey has been a tapestry woven with the threads of history—from steam locomotives braving the rugged terrains of the Ghats to the modern Vande Bharat Express gliding at breathtaking speeds. We’ve carried dreams, from the farmer in Punjab sending his harvest to markets, to the student from Bihar chasing education in Bangalore. With over 23 million passengers daily, we’re more than a railway—we’re a moving mosaic of India’s diversity, culture, and spirit.</p>
+    <p>At Indian Railway Management System, our mission is to keep this legacy alive while embracing the future. We’re committed to providing safe, affordable, and efficient travel, ensuring every journey tells a story of comfort and connection. Whether it’s the monsoon-soaked vistas from the Konkan Railway or the snow-capped Himalayan views aboard the Darjeeling Himalayan Railway, we invite you to ride with us through the soul of India.</p>
+  </main>
+
+  <!-- New Image Section -->
+  <section class="image-section">
+    <div class="tile">
+      <img src="train-journey.jpeg" alt="Journey">
+      <div class="overlay">
+        <h3>Journey</h3>
+        <a href="https://www.irctc.co.in" target="_blank">Book Now</a>
+      </div>
+    </div>
+    <div class="tile">
+      <img src="train-tours.jpeg" alt="Tours">
+      <div class="overlay">
+        <h3>Tours</h3>
+        <a href="https://www.irctc.co.in" target="_blank">Book Now</a>
+      </div>
+    </div>
+    <div class="tile">
+      <img src="holiday-trains.jpeg" alt="Holidays">
+      <div class="overlay">
+        <h3>Holidays</h3>
+        <a href="https://www.irctc.co.in" target="_blank">Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="company-section">
+    <img src="rail-logo-railway.jpg" alt="Company Logo" class="company-logo">
+    <h2>Our Vision & Mission</h2>
+    <p>We aim to revolutionize railway travel by offering world-class facilities to passengers, supporting local communities, and maintaining the cultural essence of Indian Railways. With luxurious trains, seamless ticketing, and high-speed travel, we ensure a memorable journey for all.</p>
+    <p>From local passengers to international tourists, our goal is to provide a safe, efficient, and comfortable experience, bridging distances and connecting hearts.</p>
+  </section>
+
+  <footer>
+    © 2025 Railway Management System. All Rights Reserved.
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

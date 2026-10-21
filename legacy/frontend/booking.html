@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking - Railway Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Gradient Background */
+    body {
+      background: linear-gradient(to right, #f9c5d1, #fbd3e9);
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 5px;
+    }
+
+    /* Styling Main Section */
+    main {
+      background: #fff;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .edit-btn, .remove-btn {
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .edit-btn {
+      background-color: #f0ad4e;
+      color: white;
+    }
+
+    .remove-btn {
+      background-color: #d9534f;
+      color: white;
+    }
+
+    
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="scheduling.html">Scheduling</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="termsandconditions.html">Terms & Conditions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Booking</h1>
+    <form id="bookingForm">
+      <label for="from">From:</label>
+      <input type="text" id="from" name="from" required>
+
+      <label for="to">To:</label>
+      <input type="text" id="to" name="to" required>
+
+      <label for="date">Travel Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <button type="submit">Book Now</button>
+    </form>
+
+    <!-- Booking Table -->
+    <table id="bookingTable">
+      <thead>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Bookings will be inserted here dynamically -->
+      </tbody>
+    </table>
+  </main>
+
+  <footer>
+    &copy; 2025 Railway Management System. All Rights Reserved.
+  </footer>
+
+  <script src="js/main.js"></script> <!-- External JS File -->
+  <script>
+    // display dynamically bookings
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("bookingForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Get form values
+    const from = document.getElementById("from").value;
+    const to = document.getElementById("to").value;
+    const date = document.getElementById("date").value;
+
+    if (from && to && date) {
+      addBooking(from, to, date);
+      this.reset();
+    }
+  });
+
+  function addBooking(from, to, date) {
+    const table = document.getElementById("bookingTable").getElementsByTagName("tbody")[0];
+    const row = table.insertRow();
+
+    row.insertCell(0).innerText = from;
+    row.insertCell(1).innerText = to;
+    row.insertCell(2).innerText = date;
+
+    // Actions (Edit & Remove)
+    const actionCell = row.insertCell(3);
+
+    // Edit Button
+    const editButton = document.createElement("button");
+    editButton.innerText = "Edit";
+    editButton.classList.add("edit-btn");
+    editButton.onclick = function () {
+      editBooking(row);
+    };
+    actionCell.appendChild(editButton);
+
+    // Remove Button
+    const removeButton = document.createElement("button");
+    removeButton.innerText = "Remove";
+    removeButton.classList.add("remove-btn");
+    removeButton.onclick = function () {
+      row.remove();
+    };
+    actionCell.appendChild(removeButton);
+  }
+
+  function editBooking(row) {
+    const from = prompt("Edit From:", row.cells[0].innerText);
+    const to = prompt("Edit To:", row.cells[1].innerText);
+    const date = prompt("Edit Date:", row.cells[2].innerText);
+
+    if (from && to && date) {
+      row.cells[0].innerText = from;
+      row.cells[1].innerText = to;
+      row.cells[2].innerText = date;
+    }
+  }
+});
+
+  </script>
+</body>
+</html>

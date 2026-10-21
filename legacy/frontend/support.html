@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - Railway Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Background gradient effect */
+    body {
+        background: linear-gradient(to right, #4CAF50, #2196F3);
+        color: white;
+        font-family: Arial, sans-serif;
+        padding-top: 70px; /* Adjust for fixed header */
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 15px 0;
+        z-index: 1000;
+        text-align: center;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    nav ul li {
+        display: inline;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px;
+        transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+        color: #ff9800;
+    }
+
+    main {
+        background: rgba(0, 0, 0, 0.8);
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: 50px auto;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    label {
+        width: 100%;
+        text-align: left;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        color: #333;
+    }
+
+    textarea {
+        resize: none;
+        height: 100px;
+    }
+
+    button {
+        background: #ff9800;
+        color: white;
+        border: none;
+        padding: 12px;
+        cursor: pointer;
+        font-size: 18px;
+        width: 100%;
+        border-radius: 5px;
+        margin-top: 15px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    button:hover {
+        background: #e68900;
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.9);
+        margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="scheduling.html">Scheduling</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="termsandconditions.html">Terms & Conditions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Customer Support</h1>
+    <p>If you have any queries or issues, please fill out the form below:</p>
+    <form id="supportForm" action="/support" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Railway Management System. All Rights Reserved.
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheduling - Railway Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    main {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      margin: 20px auto;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    h1, h2, p {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background: #444;
+      color: white;
+    }
+    button {
+      background: #2575fc;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1a5bbd;
+    }
+    .note-section {
+      margin-bottom: 60px; /* Added margin to prevent footer from blocking */
+      text-align: center;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="reservation.html">Reservation</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="scheduling.html">Scheduling</a></li>
+        <li><a href="aboutus.html">About Us</a></li>
+        <li><a href="termsandconditions.html">Terms & Conditions</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Train Scheduling</h1>
+    <p>View the latest train schedules below:</p>
+    
+    <form id="trainForm">
+      <input type="text" id="train" name="train" placeholder="Train Name" required>
+      <input type="text" id="departure" name="departure" placeholder="Departure Time" required>
+      <input type="text" id="arrival" name="arrival" placeholder="Arrival Time" required>
+      <input type="text" id="status" name="status" placeholder="Status" required>
+      <button type="submit">Add Train</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Train</th>
+          <th>Departure</th>
+          <th>Arrival</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="trainList"></tbody>
+    </table>
+  </main>
+
+  <div class="note-section">
+    <h2>Note:</h2>
+    <p>Already Scheduled Trains Click to View <a href="scheduledtrains.html"><button type="button">Scheduled</button></a></p>
+  </div>
+
+  <footer>
+    &copy; 2025 Railway Management System. All Rights Reserved.
+  </footer>
+  
+  <script>
+    $(document).ready(function () {
+      function fetchTrains() {
+        $.get("http://localhost:3000/trains", function (data) {
+          let trainRows = "";
+          data.forEach(train => {
+            trainRows += `<tr>
+                            <td>${train.train}</td>
+                            <td>${train.departure}</td>
+                            <td>${train.arrival}</td>
+                            <td>${train.status}</td>
+                          </tr>`;
+          });
+          $("#trainList").html(trainRows);
+        });
+      }
+      fetchTrains();
+      $("#trainForm").submit(function (e) {
+        e.preventDefault();
+        const newTrain = {
+          train: $("#train").val(),
+          departure: $("#departure").val(),
+          arrival: $("#arrival").val(),
+          status: $("#status").val()
+        };
+        $.post("http://localhost:3000/add-train", newTrain, function () {
+          fetchTrains();
+          $("#trainForm")[0].reset();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
